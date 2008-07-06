@@ -72,6 +72,35 @@ SlashCmdList.QUICKIE = function(msg)
 end
 
 
+-------------------------------
+--      Container frame      --
+-------------------------------
+
+local container = CreateFrame("Button", nil, UIParent)
+container:SetWidth(40) container:SetHeight(32+5+5)
+container:SetPoint("RIGHT", UIParent, "LEFT", 5, 0)
+
+container:SetBackdrop({
+	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	edgeSize = 16,
+	insets = {left = 5, right = 5, top = 5, bottom = 5},
+	tile = true, tileSize = 16,
+})
+container:SetBackdropColor(0.09, 0.09, 0.19, 0.5)
+container:SetBackdropBorderColor(1, 1, 0.5, 0.5)
+
+container:SetScript("OnEnter", function(self)
+	self:ClearAllPoints()
+	self:SetPoint("LEFT", UIParent, "LEFT", -5, 0)
+end)
+
+container:SetScript("OnLeave", function(self)
+	self:ClearAllPoints()
+	self:SetPoint("RIGHT", UIParent, "LEFT", 5, 0)
+end)
+
+
 -----------------------------
 --      Block factory      --
 -----------------------------
