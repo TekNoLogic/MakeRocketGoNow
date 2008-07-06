@@ -76,6 +76,35 @@ end
 --      Block factory      --
 -----------------------------
 
+local function GetTipAnchor(frame)
+	local x,y = frame:GetCenter()
+	if not x or not y then return "TOPLEFT", "BOTTOMLEFT" end
+	local hhalf = (x > UIParent:GetWidth()*2/3) and "RIGHT" or (x < UIParent:GetWidth()/3) and "LEFT" or ""
+	local vhalf = (y > UIParent:GetHeight()/2) and "TOP" or "BOTTOM"
+	return vhalf..hhalf, frame, (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
+end
+
+
+local function OnEnter(self)
+ 	GameTooltip:SetOwner(self, "ANCHOR_NONE")
+	GameTooltip:SetPoint(GetTipAnchor(self))
+	GameTooltip:ClearLines()
+
+	local name, title, notes = GetAddOnInfo(self.dataobj.tocname or self.doname)
+	if name then
+		GameTooltip:AddLine(title or name)
+		GameTooltip:AddLine(notes)
+	else
+		GameTooltip:AddLine(self.dataobj.label or self.doname)
+	end
+
+	GameTooltip:Show()
+end
+
+
+local function OnLeave() GameTooltip:Hide() end
+
+
 function f:NewDataobject(event, name, dataobj)
 	dataobj = dataobj or ldb:GetDataObjectByName(name)
 	if not dataobj.launcher then return end
@@ -93,6 +122,8 @@ function f:NewDataobject(event, name, dataobj)
 		tile = true, tileSize = 16,
 	})
 
+	frame:SetScript("OnEnter", dataobj.OnEnter or OnEnter)
+	frame:SetScript("OnLeave", dataobj.OnLeave or OnLeave)
 	frame:SetScript("OnClick", dataobj.OnClick)
 
 	frame.texture = frame:CreateTexture()
