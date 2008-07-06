@@ -1,0 +1,25 @@
+## Interface: 20400
+
+## Title: Quickie
+## Notes: Addon quicklaunch bar
+## Author: Tekkub Stoutwrithe
+## Version: Alpha
+## X-Website: http://www.tekkub.net/
+## X-Email: tekkub-wow@googlegroups.com
+## X-Category: Misc
+
+## SavedVariables: QuickieDB
+## SavedVariablesPerCharacter: QuickieDBPC
+
+## OptionalDeps: tekDebug
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
+## X-LoadOn-Slash: /quickie
+
+LibStub.lua
+tekKonfigAboutPanel.lua
+CallbackHandler-1.0.lua
+LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+Quickie.lua
