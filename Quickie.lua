@@ -202,3 +202,21 @@ ldb.RegisterCallback(f, "LibDataBroker_DataObjectCreated", "NewDataobject")
 ldb.RegisterCallback(f, "LibDataBroker_AttributeChanged__launcher", function(event, name, key, value, dataobj)
 	if value and not frames[name] then f:NewDataobject(nil, name, dataobj) end
 end)
+
+
+---------------------------
+--      About panel      --
+---------------------------
+
+local about = LibStub("tekKonfig-AboutPanel").new(nil, "Quickie")
+
+
+----------------------------------------
+--      Quicklaunch registration      --
+----------------------------------------
+
+local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Quickie", {
+	launcher = true,
+	icon = "Interface\\Icons\\Ability_Hunter_Readiness",
+	OnClick = function() InterfaceOptionsFrame_OpenToFrame(about) end,
+})
