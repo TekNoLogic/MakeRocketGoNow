@@ -1,8 +1,33 @@
-Quickie is a "quicklaunch" bar based off "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1 and "Auctionner's":http://auctioneeraddon.com Slidebar.
+Quickie is a 'quicklaunch' bar based off "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1 and "Auctioneer's":http://auctioneeraddon.com Slidebar.
 It is meant to be a common place for addons to register simple config-launching buttons, or other basic buttons.
 Basically a replacement for creating a minimap button (herpes) or fubar plugin that does nothing more than open your addon's config.
 
-Examples on how to register a button in your own addon will be added soon.
+h2. Adding support to your addon
+
+The key design point of LibDataBroker is to implement the "Model, View, Controller" design in WoW.
+This allows an addon to send out data, an OnClick action... all sorts of things, while remaining independent of the addon displaying the data or using the OnClick.
+In short, this means an addon can provide data to display on FuBar without *requiring* FuBar to be present.
+If the user doesn't have an addon to display the data, they are not bothered by stuff they don't want to see.
+
+Along this line, we can implement buttons to open addon configs easily, without the need to embed a bunch of libraries to render frames for us.
+If the user wishes to have access to the buttons, they need only install a display addon (like this one).
+This also means many different display addons could be made, each addressing a certain design, and the user has the control of which design they use.
+User choice is a good thing, I've been told.
+
+So enough rambing, how do I add this into my addon?  2 simple steps:
+# Add the embed libs into your addon.  You need "LibStub":http://www.wowwiki.com/LibStub, "CallbackHandler-1.0":http://www.wowace.com/wiki/CallbackHandler-1.0 and "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1
+#* If you use Ace3 in your addon, you might already have the first two embeds.  Just make sure they're loaded before LibDataBroker.
+# Add a "dataobject" to LibDataBroker containing an icon, an OnClick function, and "launcher" set to true
+#* launcher" tells display addons that you do not provide any "data" to be rendered, simply an OnClick action to attach to a frame.
+
+h3. Example:
+<pre>
+LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
+	launcher = true,
+	icon = "Interface\\Icons\\Spell_Nature_StormReach",
+	OnClick = function(clickedframe, button) InterfaceOptionsFrame_OpenToFrame(myconfigframe) end,
+})
+</pre>
 
 h2. Links
 
