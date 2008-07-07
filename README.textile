@@ -32,7 +32,7 @@ LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
 
 h3. Extra features
 
-* Note that these features may not be implemented in othe LDB-based quicklaunch addons! *
+<strong><em> Note that these features may not be implemented in othe LDB-based quicklaunch addons! </em></strong>
 
 Quickie will use the dataobject name to find addon metadata from the addon's TOC and display it in the tooltip.
 If your addon's name (the folder name) does not match the name you give your dataobject, you can set the "tocname" key to your addon name.
