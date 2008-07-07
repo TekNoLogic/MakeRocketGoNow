@@ -62,16 +62,6 @@ function f:PLAYER_LOGOUT()
 end
 
 
------------------------------
---      Slash Handler      --
------------------------------
-
-SLASH_QUICKIE1 = "/quickie"
-SlashCmdList.QUICKIE = function(msg)
-	-- Do crap here
-end
-
-
 -------------------------------
 --      Container frame      --
 -------------------------------

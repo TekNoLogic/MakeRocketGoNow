@@ -15,7 +15,6 @@
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
-## X-LoadOn-Slash: /quickie
 
 LibStub.lua
 tekKonfigAboutPanel.lua
