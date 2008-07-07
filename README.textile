@@ -1,4 +1,4 @@
-Quickie is a "quicklaunch" bar based off LibDataBroker-1.1 and "Auctionner's":http://auctioneeraddon.com Slidebar.
+Quickie is a "quicklaunch" bar based off "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1 and "Auctionner's":http://auctioneeraddon.com Slidebar.
 It is meant to be a common place for addons to register simple config-launching buttons, or other basic buttons.
 Basically a replacement for creating a minimap button (herpes) or fubar plugin that does nothing more than open your addon's config.
 
