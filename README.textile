@@ -14,7 +14,7 @@ If the user wishes to have access to the buttons, they need only install a displ
 This also means many different display addons could be made, each addressing a certain design, and the user has the control of which design they use.
 User choice is a good thing, I've been told.
 
-So enough rambing, how do I add this into my addon?  2 simple steps:
+So enough rambing, how do I add this into my addon?  Two simple steps:
 # Add the embed libs into your addon.  You need "LibStub":http://www.wowwiki.com/LibStub, "CallbackHandler-1.0":http://www.wowace.com/wiki/CallbackHandler-1.0 and "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1
 #* If you use Ace3 in your addon, you probably already have the first two embeds.  Just make sure they're loaded before LibDataBroker
 # Add a "dataobject" to LibDataBroker containing an icon, an OnClick function, and "launcher" set to true
@@ -32,7 +32,7 @@ LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
 
 h3. Extra features
 
-<strong><em> Note that these features may not be implemented in othe LDB-based quicklaunch addons! </em></strong>
+<strong><em> Note that these features may not be implemented in other LDB-based quicklaunch addons! </em></strong>
 
 Quickie will use the dataobject name to find addon metadata from the addon's TOC and display it in the tooltip.
 If your addon's name (the folder name) does not match the name you give your dataobject, you can set the "tocname" key to your addon name.
