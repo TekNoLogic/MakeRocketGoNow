@@ -21,6 +21,7 @@ So enough rambing, how do I add this into my addon?  2 simple steps:
 #* launcher" tells display addons that you do not provide any "data" to be rendered, simply an OnClick action to attach to a frame.
 
 h3. Example:
+
 <pre>
 LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
 	launcher = true,
