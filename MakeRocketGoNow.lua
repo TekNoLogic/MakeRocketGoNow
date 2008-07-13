@@ -19,13 +19,23 @@ local debugf = tekDebug and tekDebug:GetFrame("MakeRocketGoNow")
 local function Debug(...) if debugf then debugf:AddMessage(string.join(", ", ...)) end end
 
 
+------------------------
+--      LDB feed      --
+------------------------
+
+local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MakeRocketGoNow", {
+	text = "Rocket",
+	icon = "Interface\\Icons\\Ability_Mount_RocketMount",
+})
+
+
 -------------------------------
 --      Container frame      --
 -------------------------------
 
 local container = CreateFrame("Button", nil, UIParent)
 container:SetWidth(EDGE*2) container:SetHeight(BUTTONSIZE + EDGE*2)
-container:SetPoint("RIGHT", UIParent, "LEFT", EDGE, 0)
+container:Hide()
 
 container:SetBackdrop({
 	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
@@ -43,16 +53,13 @@ local function OnUpdate(self, elapsed)
 	hideelapsed = hideelapsed + elapsed
 	if hideelapsed < 2 then return end
 
-	self:ClearAllPoints()
-	self:SetPoint("RIGHT", UIParent, "LEFT", EDGE, 0)
-	self:SetScript("OnUpdate", nil)
+	container:SetScript("OnUpdate", nil)
+	self:Hide()
 end
 
 
 local function containerOnEnter()
 	container:SetScript("OnUpdate", nil)
-	container:ClearAllPoints()
-	container:SetPoint("LEFT", UIParent, "LEFT", -EDGE, 0)
 end
 
 
@@ -64,6 +71,14 @@ end
 
 container:SetScript("OnEnter", containerOnEnter)
 container:SetScript("OnLeave", containerOnLeave)
+
+
+function dataobj:OnClick()
+	containerOnLeave()
+	container:ClearAllPoints()
+	container:SetPoint("TOPLEFT", self, "BOTTOMLEFT")
+	container:Show()
+end
 
 
 -----------------------------
