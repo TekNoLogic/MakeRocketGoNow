@@ -106,7 +106,7 @@ local function OnEnter(self, ...)
 		local name, title, notes = GetAddOnInfo(self.dataobj.tocname or self.doname)
 		if name then
 			GameTooltip:AddLine(title or name)
-			GameTooltip:AddLine(notes)
+			GameTooltip:AddLine(notes, 1, 1, 1)
 		else
 			GameTooltip:AddLine(self.dataobj.label or self.doname)
 		end
