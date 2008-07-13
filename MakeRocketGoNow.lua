@@ -13,9 +13,9 @@ local BUTTONSIZE, EDGE, GAP = 32, 5, 2
 --      Util Functions      --
 ------------------------------
 
-local function Print(...) ChatFrame1:AddMessage(string.join(" ", "|cFF33FF99Quickie|r:", ...)) end
+local function Print(...) ChatFrame1:AddMessage(string.join(" ", "|cFF33FF99MakeRocketGoNow|r:", ...)) end
 
-local debugf = tekDebug and tekDebug:GetFrame("Quickie")
+local debugf = tekDebug and tekDebug:GetFrame("MakeRocketGoNow")
 local function Debug(...) if debugf then debugf:AddMessage(string.join(", ", ...)) end end
 
 
@@ -155,15 +155,16 @@ end)
 --      About panel      --
 ---------------------------
 
-local about = LibStub("tekKonfig-AboutPanel").new(nil, "Quickie")
+local about = LibStub("tekKonfig-AboutPanel").new(nil, "MakeRocketGoNow")
 
 
 ----------------------------------------
 --      Quicklaunch registration      --
 ----------------------------------------
 
-local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Quickie", {
+LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MakeRocketGoNowLauncher", {
 	launcher = true,
-	icon = "Interface\\Icons\\Ability_Hunter_Readiness",
+	tocname= "MakeRocketGoNow",
+	icon = "Interface\\Icons\\Ability_Mount_RocketMount",
 	OnClick = function() InterfaceOptionsFrame_OpenToFrame(about) end,
 })

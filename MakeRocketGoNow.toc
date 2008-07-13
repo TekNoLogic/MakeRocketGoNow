@@ -1,7 +1,7 @@
 ## Interface: 20400
 
-## Title: Quickie
-## Notes: Addon quicklaunch bar
+## Title: Make Rocket Go Now
+## Notes: LDB launcher menu... for LDB!
 ## Author: Tekkub Stoutwrithe
 ## Version: Alpha
 ## X-Website: http://www.tekkub.net/
@@ -18,4 +18,4 @@ tekKonfigAboutPanel.lua
 CallbackHandler-1.0.lua
 LibDataBroker-1.1\LibDataBroker-1.1.lua
 
-Quickie.lua
+MakeRocketGoNow.lua
