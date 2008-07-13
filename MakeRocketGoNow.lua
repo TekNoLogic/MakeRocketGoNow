@@ -133,15 +133,31 @@ local function OnClickChanged(self, event, name, key, value, dataobj)
 end
 
 
-local frames, lastframe = {}
+local framenames, frames, lastframe = {}, {}
+local function Reanchor()
+	for name,frame in pairs(frames) do frame:ClearAllPoints() end
+	table.sort(framenames)
+
+	local lastframe
+	for i,name in ipairs(framenames) do
+		local frame = frames[name]
+		frame:SetPoint("LEFT", lastframe or container, lastframe and "RIGHT" or "LEFT", lastframe and GAP or EDGE, 0)
+		lastframe = frame
+	end
+end
+
+
 function container:NewDataobject(event, name, dataobj)
 	dataobj = dataobj or ldb:GetDataObjectByName(name)
 	if not dataobj.launcher then return end
 
 	local frame = CreateFrame("Button", nil, container)
 	frame:SetWidth(BUTTONSIZE) frame:SetHeight(BUTTONSIZE)
-	frame:SetPoint("LEFT", lastframe or container, lastframe and "RIGHT" or "LEFT", lastframe and GAP or EDGE, 0)
-	container:SetWidth(container:GetWidth() + BUTTONSIZE + (lastframe and GAP or 0))
+	table.insert(framenames, name)
+	frames[name] = frame
+	Reanchor()
+
+	container:SetWidth(container:GetWidth() + BUTTONSIZE + ((#framenames > 1) and GAP or 0))
 	frame.doname, frame.dataobj, frame.IconChanged, frame.OnClickChanged = name, dataobj, IconChanged, OnClickChanged
 
 	frame:SetScript("OnEnter", OnEnter)
@@ -154,8 +170,6 @@ function container:NewDataobject(event, name, dataobj)
 
 	ldb.RegisterCallback(frame, "LibDataBroker_AttributeChanged_"..name.."_icon", "IconChanged")
 	ldb.RegisterCallback(frame, "LibDataBroker_AttributeChanged_"..name.."_OnClick", "OnClickChanged")
-
-	frames[name], lastframe = frame, frame
 end
 
 
