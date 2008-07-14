@@ -73,18 +73,6 @@ container:SetScript("OnEnter", containerOnEnter)
 container:SetScript("OnLeave", containerOnLeave)
 
 
-function dataobj:OnClick()
-	containerOnLeave()
-	container:ClearAllPoints()
-	container:SetPoint("TOPLEFT", self, "BOTTOMLEFT")
-	container:Show()
-end
-
-
------------------------------
---      Block factory      --
------------------------------
-
 local function GetTipAnchor(frame)
 	local x,y = frame:GetCenter()
 	if not x or not y then return "TOPLEFT", "BOTTOMLEFT" end
@@ -93,6 +81,18 @@ local function GetTipAnchor(frame)
 	return vhalf..hhalf, frame, (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
 end
 
+
+function dataobj:OnClick()
+	containerOnLeave()
+	container:ClearAllPoints()
+	container:SetPoint(GetTipAnchor(self))
+	container:Show()
+end
+
+
+-----------------------------
+--      Block factory      --
+-----------------------------
 
 local function OnEnter(self, ...)
 	containerOnEnter()
