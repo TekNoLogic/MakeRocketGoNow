@@ -1,6 +1,6 @@
-MakeRocketGoNow is a 'quicklaunch' plugin fbased on "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1.
+MakeRocketGoNow is a 'quicklaunch' plugin based on "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1.
 MRGN will take all your LDB launchers and create a LDB plugin to display them in.
-This allow you to access to all your LDB launchers on an LDB display addon that doesn't support them.
+This allows you to access to all your LDB launchers on an LDB display addon that doesn't support them.
 
 h2. Adding support to your addon
 
@@ -24,7 +24,7 @@ LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
 
 h3. Further reading
 
-It's highly reccomended that you read the "API documentation":http://github.com/tekkub/libdatabroker-1-1/wikis/api and
+It's highly recommended that you read the "API documentation":http://github.com/tekkub/libdatabroker-1-1/wikis/api and
 "sample data specifications":http://github.com/tekkub/libdatabroker-1-1/wikis/data-specifications before using LDB.
 
 h2. Links
