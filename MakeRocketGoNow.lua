@@ -138,10 +138,29 @@ local function Reanchor()
 	for name,frame in pairs(frames) do frame:ClearAllPoints() end
 	table.sort(framenames)
 
-	local lastframe
+	local lastframe, lastrow
 	for i,name in ipairs(framenames) do
 		local frame = frames[name]
-		frame:SetPoint("LEFT", lastframe or container, lastframe and "RIGHT" or "LEFT", lastframe and GAP or EDGE, 0)
+		if i == 1 then
+			frame:SetPoint("TOPLEFT", container, "TOPLEFT", EDGE, -EDGE)
+			lastrow = frame
+		elseif i % 5 == 1 then
+			frame:SetPoint("TOPLEFT", lastrow, "BOTTOMLEFT", 0, -GAP)
+			lastrow = frame
+		else
+			frame:SetPoint("LEFT", lastframe, "RIGHT", GAP, 0)
+		end
+
+		local numbutts = #framenames
+		if numbutts < 5 then
+			container:SetWidth(EDGE*2 + numbutts*BUTTONSIZE + (numbutts-1)*GAP)
+		else
+			container:SetWidth(EDGE*2 + 5*BUTTONSIZE + 4*GAP)
+		end
+
+		local numrows = math.ceil(numbutts/5)
+		container:SetHeight(numrows*BUTTONSIZE + (numrows-1)*GAP + EDGE*2)
+
 		lastframe = frame
 	end
 end
@@ -157,7 +176,6 @@ function container:NewDataobject(event, name, dataobj)
 	frames[name] = frame
 	Reanchor()
 
-	container:SetWidth(container:GetWidth() + BUTTONSIZE + ((#framenames > 1) and GAP or 0))
 	frame.doname, frame.dataobj, frame.IconChanged, frame.OnClickChanged = name, dataobj, IconChanged, OnClickChanged
 
 	frame:SetScript("OnEnter", OnEnter)
