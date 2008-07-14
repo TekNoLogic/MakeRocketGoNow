@@ -1,26 +1,18 @@
-Quickie is a 'quicklaunch' bar based off "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1 and "Auctioneer's":http://auctioneeraddon.com Slidebar.
-It is meant to be a common place for addons to register simple config-launching buttons, or other basic buttons.
-Basically a replacement for creating a minimap button (herpes) or fubar plugin that does nothing more than open your addon's config.
+MakeRocketGoNow is a 'quicklaunch' plugin fbased on "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1.
+MRGN will take all your LDB launchers and create a LDB plugin to display them in.
+This allow you to access to all your LDB launchers on an LDB display addon that doesn't support them.
 
 h2. Adding support to your addon
 
-The key design point of LibDataBroker is to implement the "Model, View, Controller" design in WoW.
-This allows an addon to send out data, an OnClick action... all sorts of things, while remaining independent of the addon displaying the data or using the OnClick.
-In short, this means an addon can provide data to display on FuBar without *requiring* FuBar to be present.
-If the user doesn't have an addon to display the data, they are not bothered by stuff they don't want to see.
-
-Along this line, we can implement buttons to open addon configs easily, without the need to embed a bunch of libraries to render frames for us.
-If the user wishes to have access to the buttons, they need only install a display addon (like this one).
-This also means many different display addons could be made, each addressing a certain design, and the user has the control of which design they use.
-User choice is a good thing, I've been told.
-
-So enough rambing, how do I add this into my addon?  Two simple steps:
+Implementing an LDB launcher in your addon is simple:
 # Add the embed libs into your addon.  You need "LibStub":http://www.wowwiki.com/LibStub, "CallbackHandler-1.0":http://www.wowace.com/wiki/CallbackHandler-1.0 and "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1
 #* If you use Ace3 in your addon, you probably already have the first two embeds.  Just make sure they're loaded before LibDataBroker
 # Add a "dataobject" to LibDataBroker containing an icon, an OnClick function, and "launcher" set to true
 #* The "launcher" key tells display addons that you do not provide any "data" to be rendered, simply an OnClick action to attach to a frame
 
 h3. Example:
+
+Here is a simple launcher that will open a config panel:
 
 <pre>
 LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
@@ -30,21 +22,13 @@ LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MyAddonName", {
 })
 </pre>
 
-h3. Extra features
+h3. Further reading
 
-<strong><em> Note that these features may not be implemented in other LDB-based quicklaunch addons! </em></strong>
-
-Quickie will use the dataobject name to find addon metadata from the addon's TOC and display it in the tooltip.
-If your addon's name (the folder name) does not match the name you give your dataobject, you can set the "tocname" key to your addon name.
-
-If you want a custom tooltip instead of Quickie's default (addon title and notes from the TOC), you can pass OnEnter and OnLeave functions into your dataobject.
-These handlers will be called and passed the usual args (self for the frame that we were called from).
-Make sure you include both script handlers!
-
-If you don't want an addon-specific tooltip, but instead a simple label, use a dataobject name that doesn't match your addon name and set the "label" key in your dataobject to the text you wish to display.
+It's highly reccomended that you read the "API documentation":http://github.com/tekkub/libdatabroker-1-1/wikis/api and
+"sample data specifications":http://github.com/tekkub/libdatabroker-1-1/wikis/data-specifications before using LDB.
 
 h2. Links
 
-<b>Visit "my site":http://www.tekkub.net/addons/Quickie for more info.<br>
-Please report all bugs and feature requests to my "Google Code":http://code.google.com/p/tekkub-wow/issues/list?can=1&q=addon:Quickie&sort=status+milestone&colspec=ID%20Type%20Status%20Addon%20Milestone%20Summary tracker<br>
+<b>Visit "my site":http://www.tekkub.net/addons/MakeRocketGoNow for more info.<br>
+Please report all bugs and feature requests to my "Google Code":http://code.google.com/p/tekkub-wow/issues/list?can=1&q=addon:MakeRocketGoNow&sort=status+milestone&colspec=ID%20Type%20Status%20Addon%20Milestone%20Summary tracker<br>
 Please direct all feedback and questions to my "Google Groups":http://groups-beta.google.com/group/tekkub-wow mailinglist</b>
