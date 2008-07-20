@@ -168,7 +168,7 @@ end
 
 function container:NewDataobject(event, name, dataobj)
 	dataobj = dataobj or ldb:GetDataObjectByName(name)
-	if not dataobj.launcher then return end
+	if dataobj.type ~= "launcher" then return end
 
 	local frame = CreateFrame("Button", nil, container)
 	frame:SetWidth(BUTTONSIZE) frame:SetHeight(BUTTONSIZE)
@@ -191,11 +191,8 @@ function container:NewDataobject(event, name, dataobj)
 end
 
 
-for name,dataobj in ldb:DataObjectIterator() do if dataobj.launcher then container:NewDataobject(nil, name, dataobj) end end
+for name,dataobj in ldb:DataObjectIterator() do if dataobj.type == "launcher" then container:NewDataobject(nil, name, dataobj) end end
 ldb.RegisterCallback(container, "LibDataBroker_DataObjectCreated", "NewDataobject")
-ldb.RegisterCallback(container, "LibDataBroker_AttributeChanged__launcher", function(event, name, key, value, dataobj)
-	if value and not frames[name] then container:NewDataobject(nil, name, dataobj) end
-end)
 
 
 ---------------------------
@@ -210,7 +207,7 @@ local about = LibStub("tekKonfig-AboutPanel").new(nil, "MakeRocketGoNow")
 ----------------------------------------
 
 LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MakeRocketGoNowLauncher", {
-	launcher = true,
+	type = "launcher",
 	tocname= "MakeRocketGoNow",
 	icon = "Interface\\Icons\\Ability_Mount_RocketMount",
 	OnClick = function() InterfaceOptionsFrame_OpenToFrame(about) end,
