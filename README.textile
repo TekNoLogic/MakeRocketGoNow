@@ -6,11 +6,9 @@ h2. Adding support to your addon
 
 Implementing an LDB launcher in your addon is simple:
 # Add the embed libs into your addon.  You need "LibStub":http://www.wowwiki.com/LibStub, "CallbackHandler-1.0":http://www.wowace.com/wiki/CallbackHandler-1.0 and "LibDataBroker-1.1":http://github.com/tekkub/libdatabroker-1-1
-# Add a "dataobject" to LibDataBroker containing an icon, an OnClick function, and "launcher" set to true
+# Add a "dataobject" to LibDataBroker containing an icon, an OnClick function, and "type" set to "launcher"
 
 <em>If you use Ace3 in your addon, you probably already have the first two embeds.  Just make sure they're loaded before LibDataBroker</em>
-
-<em>The "launcher" key tells display addons that you do not provide any "data" to be rendered, simply an OnClick action to attach to a frame</em>
 
 h2. Further reading
 
