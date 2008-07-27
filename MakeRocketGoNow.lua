@@ -128,6 +128,12 @@ local function IconChanged(self, event, name, key, value, dataobj)
 end
 
 
+local function TexCoordChanged(self, event, name, key, value, dataobj)
+	if value then self.texture:SetTexCoord(unpack(dataobj.texcoord))
+	else self.texture:SetTexCoord(0,1,0,1) end
+end
+
+
 local function OnClickChanged(self, event, name, key, value, dataobj)
 	self:SetScript("OnClick", value)
 end
@@ -176,7 +182,7 @@ function container:NewDataobject(event, name, dataobj)
 	frames[name] = frame
 	Reanchor()
 
-	frame.doname, frame.dataobj, frame.IconChanged, frame.OnClickChanged = name, dataobj, IconChanged, OnClickChanged
+	frame.doname, frame.dataobj, frame.IconChanged, frame.OnClickChanged, frame.TexCoordChanged = name, dataobj, IconChanged, OnClickChanged, TexCoordChanged
 
 	frame:SetScript("OnEnter", OnEnter)
 	frame:SetScript("OnLeave", OnLeave)
@@ -185,8 +191,10 @@ function container:NewDataobject(event, name, dataobj)
 	frame.texture = frame:CreateTexture()
 	frame.texture:SetAllPoints()
 	frame.texture:SetTexture(dataobj.icon)
+	if dataobj.texcoord then frame.texture:SetTexCoord(unpack(dataobj.texcoord)) end
 
 	ldb.RegisterCallback(frame, "LibDataBroker_AttributeChanged_"..name.."_icon", "IconChanged")
+	ldb.RegisterCallback(frame, "LibDataBroker_AttributeChanged_"..name.."_texcoord", "TexCoordChanged")
 	ldb.RegisterCallback(frame, "LibDataBroker_AttributeChanged_"..name.."_OnClick", "OnClickChanged")
 end
 
