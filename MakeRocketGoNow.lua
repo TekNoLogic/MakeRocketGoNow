@@ -24,6 +24,7 @@ local function Debug(...) if debugf then debugf:AddMessage(string.join(", ", ...
 ------------------------
 
 local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("MakeRocketGoNow", {
+	type = "data source",
 	text = "Rocket",
 	icon = "Interface\\Icons\\Ability_Mount_RocketMount",
 })
