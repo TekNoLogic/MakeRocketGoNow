@@ -6,7 +6,7 @@
 local L = setmetatable({}, {__index=function(t,i) return i end})
 local defaults, defaultsPC, db, dbpc = {}, {}
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
-local BUTTONSIZE, EDGE, GAP = 32, 5, 2
+local NUM_BUTTONS_WIDE, BUTTONSIZE, EDGE, GAP = 9, 32, 5, 2
 
 
 ------------------------------
@@ -144,7 +144,7 @@ local function Reanchor()
 		if i == 1 then
 			frame:SetPoint("TOPLEFT", container, "TOPLEFT", EDGE, -EDGE)
 			lastrow = frame
-		elseif i % 5 == 1 then
+		elseif i % NUM_BUTTONS_WIDE == 1 then
 			frame:SetPoint("TOPLEFT", lastrow, "BOTTOMLEFT", 0, -GAP)
 			lastrow = frame
 		else
@@ -152,13 +152,13 @@ local function Reanchor()
 		end
 
 		local numbutts = #framenames
-		if numbutts < 5 then
+		if numbutts < NUM_BUTTONS_WIDE then
 			container:SetWidth(EDGE*2 + numbutts*BUTTONSIZE + (numbutts-1)*GAP)
 		else
-			container:SetWidth(EDGE*2 + 5*BUTTONSIZE + 4*GAP)
+			container:SetWidth(EDGE*2 + NUM_BUTTONS_WIDE*BUTTONSIZE + (NUM_BUTTONS_WIDE-1)*GAP)
 		end
 
-		local numrows = math.ceil(numbutts/5)
+		local numrows = math.ceil(numbutts/NUM_BUTTONS_WIDE)
 		container:SetHeight(numrows*BUTTONSIZE + (numrows-1)*GAP + EDGE*2)
 
 		lastframe = frame
