@@ -188,6 +188,7 @@ function container:NewDataobject(event, name, dataobj)
 	frame:SetScript("OnEnter", OnEnter)
 	frame:SetScript("OnLeave", OnLeave)
 	frame:SetScript("OnClick", dataobj.OnClick)
+	frame:RegisterForClicks("anyUp")
 
 	frame.texture = frame:CreateTexture()
 	frame.texture:SetAllPoints()
