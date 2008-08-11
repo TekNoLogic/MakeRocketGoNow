@@ -104,12 +104,16 @@ local function OnEnter(self, ...)
 		GameTooltip:SetPoint(GetTipAnchor(self))
 		GameTooltip:ClearLines()
 
-		local name, title, notes, _, _, reason  = GetAddOnInfo(self.dataobj.tocname or self.doname)
-		if reason == "MISSING" then
-			GameTooltip:AddLine(self.dataobj.label or self.doname)
+		if self.dataobj.OnTooltipShow then
+			self.dataobj.OnTooltipShow(GameTooltip)
 		else
-			GameTooltip:AddLine(title or name)
-			GameTooltip:AddLine(notes, 1, 1, 1)
+			local name, title, notes, _, _, reason  = GetAddOnInfo(self.dataobj.tocname or self.doname)
+			if reason == "MISSING" then
+				GameTooltip:AddLine(self.dataobj.label or self.doname)
+			else
+				GameTooltip:AddLine(title or name)
+				GameTooltip:AddLine(notes, 1, 1, 1)
+			end
 		end
 
 		GameTooltip:Show()
