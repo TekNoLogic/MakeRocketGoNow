@@ -6,7 +6,7 @@
 local L = setmetatable({}, {__index=function(t,i) return i end})
 local defaults, defaultsPC, db, dbpc = {}, {}
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
-local NUM_BUTTONS_WIDE, BUTTONSIZE, EDGE, GAP = 9, 32, 5, 2
+local NUM_BUTTONS_WIDE, BUTTONSIZE, EDGE, GAP = 10, 32, 5, 2
 
 
 ------------------------------
