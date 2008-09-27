@@ -1,3 +1,7 @@
+3.0.1.5-Beta
+    Update for wrath build 8962 config panel breakage
+    Embed update
+
 3.0.1.4-Beta
     Embed update
     Add OnTooltipShow (patch from Funky)
