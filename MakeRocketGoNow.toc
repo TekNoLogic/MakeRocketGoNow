@@ -7,11 +7,13 @@
 ## X-Website: http://www.tekkub.net/
 ## X-Email: tekkub-wow@googlegroups.com
 ## X-Category: Misc
+## X-Icon: Interface\Icons\Ability_Mount_RocketMount
 
 ## OptionalDeps: tekDebug
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
+## X-LoadOn-InterfaceOptions: MakeRocketGoNow
 
 LibStub.lua
 tekKonfigAboutPanel.lua
