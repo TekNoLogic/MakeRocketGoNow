@@ -1,3 +1,7 @@
+5.0.1.6-Beta
+    More menuminibuttons, time to make it wider
+    Add support for AddonLoader's LoadOn-InterfaceOptions thingy
+
 3.0.1.5-Beta
     Update for wrath build 8962 config panel breakage
     Embed update
