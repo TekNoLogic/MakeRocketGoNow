@@ -187,7 +187,11 @@ function container:NewDataobject(event, name, dataobj)
 	frames[name] = frame
 	Reanchor()
 
-	frame.doname, frame.dataobj, frame.IconChanged, frame.OnClickChanged, frame.TexCoordChanged = name, dataobj, IconChanged, OnClickChanged, TexCoordChanged
+	frame.doname          = dataobj.label or name
+	frame.dataobj         = dataobj
+	frame.IconChanged     = IconChanged
+	frame.OnClickChanged  = OnClickChanged
+	frame.TexCoordChanged = TexCoordChanged
 
 	frame:SetScript("OnEnter", OnEnter)
 	frame:SetScript("OnLeave", OnLeave)
